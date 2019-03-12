@@ -12,6 +12,7 @@ run:
 	echo "Giving postgres a chance to start up.." && sleep 10
 	psql -h $(PGHOST) -U $(PGUSER) -f database/bootstrap.sql
 	psql -h $(PGHOST) -U $(PGUSER) -d $(PGDB) -f database/newsdata.sql
+	psql -h $(PGHOST) -U $(PGUSER) -d $(PGDB) -f database/views.sql
 
 clean:
 	docker kill $$(docker ps | grep postgres | awk '{ print $$1 }')
