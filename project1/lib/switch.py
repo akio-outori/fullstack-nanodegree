@@ -2,14 +2,17 @@
 # This class provides the functionality we want. You only need to look at
 # this if you want to know how this works. It only needs to be defined
 # once, no need to muck around with its internals.
+
+
 class switch(object):
     """
     This class provides the functionality we want. You only need to look at
     this if you want to know how this works. It only needs to be defined
     once, no need to muck around with its internals.
-    This work is NOT mine.  
+    This work is NOT mine.
     Found at - http://code.activestate.com/recipes/410692/
     """
+
     def __init__(self, value):
         self.value = value
         self.fall = False
@@ -18,12 +21,12 @@ class switch(object):
         """Return the match method once, then stop"""
         yield self.match
         raise StopIteration
-    
+
     def match(self, *args):
         """Indicate whether or not to enter a case suite"""
         if self.fall or not args:
             return True
-        elif self.value in args: # changed for v1.5, see below
+        elif self.value in args:  # changed for v1.5, see below
             self.fall = True
             return True
         else:

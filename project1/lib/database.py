@@ -1,5 +1,6 @@
 import psycopg2
 
+
 class database(object):
     """
     Create the postgres database connection and return the connection object
@@ -13,7 +14,7 @@ class database(object):
         }
         try:
             return psycopg2.connect(**connection_parameters)
-        except:
+        except BaseException:
             print("I am unable to connect to the database")
             conn.close()
 
