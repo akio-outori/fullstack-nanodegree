@@ -12,7 +12,8 @@ def showOpts():
   print("Option not understood:")
   print("  top_authors")
   print("  top_articles")
-  print("\nusage: tf-generator <option> <file>.yml")
+  print("  highest_error")
+  print("\nusage: report.py <option>")
   sys.exit(1)
 
 def run_query(query):
@@ -33,4 +34,8 @@ for case in switch(option):
 
     if case("top_articles"):
         print(run_query('select * from top_articles;'))
+        break
+
+    if case("highest_error"):
+        print(run_query('select * from error_stats limit 1;'))
         break
