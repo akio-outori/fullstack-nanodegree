@@ -7,6 +7,7 @@
 import sys
 from lib.switch import switch
 from lib.database import database
+from lib.output import output
 
 # Show possible command line options
 
@@ -24,7 +25,6 @@ def run_query(query):
     db = database.connection('news', 'postgres', 'localhost')
     return database.query(db, query)
 
-
 # Get Options
 try:
     option = sys.argv[1]
@@ -34,13 +34,13 @@ except BaseException:
 for case in switch(option):
 
     if case("top_authors"):
-        print(run_query('select * from top_authors limit 3;'))
+        print(output.text(run_query('SELECT * FROM top_authors;')))
         break
 
     if case("top_articles"):
-        print(run_query('select * from top_articles;'))
+        print(output.text(run_query('SELECT title, clicks FROM top_articles LIMIT 3;')))
         break
 
     if case("highest_error"):
-        print(run_query('select * from error_stats limit 1;'))
+        print(output.text(run_query('SELECT * FROM error_stats WHERE error > 1.0;')))
         break
